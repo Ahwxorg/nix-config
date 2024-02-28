@@ -23,23 +23,24 @@
       userName  = "Ahwx";
       userEmail = "ahwx@ahwx.org";
     };
-  };
 
-  programs.zsh = {
-    enable = true;
-    autosuggestions.enable = true;
-    enableCompletion = true;
-    syntaxHighlighting.enable = true;
-
-    localVariables = {
-      # Looks like this: '~/some/path > '
-      PS1 = "%F{magenta}%~%f > ";
-      # Gets pushed to the home directory otherwise
-      # LESSHISTFILE = "/dev/null";
-      # Make Vi mode transitions faster (in hundredths of a second)
-      # KEYTIMEOUT = 1;
+    programs.zsh = {
+      enable = true;
+      autocd = true;
+      enableAutosuggestions = true;
+      enableCompletion = true;
+      # syntaxHighlighting.enable = true;
+  
+      localVariables = {
+        # Looks like this: '~/some/path > '
+        PS1 = "%F{magenta}%~%f > ";
+        # Gets pushed to the home directory otherwise
+        # LESSHISTFILE = "/dev/null";
+        # Make Vi mode transitions faster (in hundredths of a second)
+        # KEYTIMEOUT = 1;
+      };
     };
-
   };
 
+  programs.zsh.enable = true;
 }
