@@ -9,10 +9,10 @@
     shell = pkgs.zsh;
     extraGroups = [ "networkmanager" "wheel" ];
     packages = with pkgs; [
-      firefox
       neovim
       tmux
-      wget
+      lazygit
+      neofetch
     ];
     openssh.authorizedKeys.keys = [ "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQC76g1k1112/yFNgTVbza3KV9usRKldaPx1kmvwiXdxbe3w62VrMGr0gkttIVv9q2UkXxjFvYDRLQYhIpOuPMMdx0ignXAaMv5Xk6tliUd0MG1TIYlbHGWMz4aKhDyt2813Qeu4H2nxhMCQ9cKApmKFfjOp9FYal5TQFDezYdl3KSqFuGtHsyEFxTEsFsJRopMpEBGRAeesTW0awknx6R2/X0rvEwcQBW89UHwwvqHHs06Rgobemev+3yZdeaigpwUuFmrjebGGCZxGtMALfNbQDXORH2nkIYg8cvxu5xLc3gkD/+HIdg32uwT6L6Inq8XwdJS5fidXjK/R92+DEgQQ0NSQ40nyNWxX3FEolWtQ69WOWcVuGNhdum4ifn4xVWrI0vK8tmBgNJHCoygIv3OcsgVKOQSUz0wM0QhwXMb77FbaQOWmf0HyN3CU4ZDWDFGCkRDFUnv4f2/pKN1rnV1mNCoyBCsuUwpqdrPAc64Kz1A0XWWiBuT8qkRT+//88HM=" ];
   };
@@ -29,7 +29,6 @@
       autocd = true;
       enableAutosuggestions = true;
       enableCompletion = true;
-      # syntaxHighlighting.enable = true;
   
       localVariables = {
         # Looks like this: '~/some/path > '
@@ -39,6 +38,34 @@
         # Make Vi mode transitions faster (in hundredths of a second)
         # KEYTIMEOUT = 1;
       };
+
+      plugins = with pkgs; [
+      {
+        name = "zsh-syntax-highlighting";
+        src = fetchFromGitHub {
+          owner = "zsh-users";
+          repo = "zsh-syntax-highlighting";
+          rev = "0.6.0";
+          sha256 = "0zmq66dzasmr5pwribyh4kbkk23jxbpdw4rjxx0i7dx8jjp2lzl4";
+        };
+        file = "zsh-syntax-highlighting.zsh";
+      }
+      {
+        name = "zsh-autopair";
+        src = fetchFromGitHub {
+          owner = "hlissner";
+          repo = "zsh-autopair";
+          rev = "34a8bca0c18fcf3ab1561caef9790abffc1d3d49";
+          sha256 = "1h0vm2dgrmb8i2pvsgis3lshc5b0ad846836m62y8h3rdb3zmpy1";
+        };
+        file = "autopair.zsh";
+      }
+      ];
+    };
+
+    programs.fzf = {
+      enable = true;
+      enableZshIntegration = true;
     };
   };
 
