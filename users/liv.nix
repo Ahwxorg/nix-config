@@ -1,6 +1,11 @@
-{ lib, config, pkgs,  ... }:
+{ lib, config, nixvim, pkgs,  ... }:
 
 {
+  imports =
+  [
+    nixvim.homeManagerModules.nixvim
+  ];
+
 # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.liv = {
     isNormalUser = true;
@@ -13,6 +18,8 @@
       tmux
       lazygit
       neofetch
+      eza
+      htop
     ];
     openssh.authorizedKeys.keys = [ "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQC76g1k1112/yFNgTVbza3KV9usRKldaPx1kmvwiXdxbe3w62VrMGr0gkttIVv9q2UkXxjFvYDRLQYhIpOuPMMdx0ignXAaMv5Xk6tliUd0MG1TIYlbHGWMz4aKhDyt2813Qeu4H2nxhMCQ9cKApmKFfjOp9FYal5TQFDezYdl3KSqFuGtHsyEFxTEsFsJRopMpEBGRAeesTW0awknx6R2/X0rvEwcQBW89UHwwvqHHs06Rgobemev+3yZdeaigpwUuFmrjebGGCZxGtMALfNbQDXORH2nkIYg8cvxu5xLc3gkD/+HIdg32uwT6L6Inq8XwdJS5fidXjK/R92+DEgQQ0NSQ40nyNWxX3FEolWtQ69WOWcVuGNhdum4ifn4xVWrI0vK8tmBgNJHCoygIv3OcsgVKOQSUz0wM0QhwXMb77FbaQOWmf0HyN3CU4ZDWDFGCkRDFUnv4f2/pKN1rnV1mNCoyBCsuUwpqdrPAc64Kz1A0XWWiBuT8qkRT+//88HM=" ];
   };
@@ -37,6 +44,28 @@
         LESSHISTFILE = "/dev/null";
         # Make Vi mode transitions faster (in hundredths of a second)
         # KEYTIMEOUT = 1;
+      };
+
+      shellAliases = {
+        ls = "eza -Glh";
+        la = "eza -A";
+        ll = "eza -l";
+        lla = "eza -lA";
+        # :q = "exit";
+        ezit = "exit";
+        notes = "nvim ~/Documents/todo.md";
+        todo = "nvim ~/Documents/todo.md";
+        irc = "ssh irc";
+        tmuxconf = "nvim ~/.config/tmux/tmux.conf";
+        nvimconf = "cd ~/.config/nvim && nvim";
+        termconf = "nvim ~/.config/alacritty/alacritty.yml";
+        reboot-to-macos = "echo 1 | doas asahi-bless 1>/dev/null && doas reboot";
+        wc = "wl-copy";
+        zshrc = "nvim ~/.zshrc";
+        yt-dlp-audio = "yt-dlp -f 'ba' -x --audio-format mp3";
+        emerge = "doas emerge";
+        zshconf = "nvim ~/.zshrc";
+        open = "xdg-open";
       };
 
       plugins = with pkgs; [
