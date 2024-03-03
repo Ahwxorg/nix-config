@@ -48,7 +48,7 @@
       };
 
       shellAliases = {
-        ls = "eza -Glh";
+        ls = "eza -lh";
         la = "eza -A";
         ll = "eza -l";
         lla = "eza -lA";
