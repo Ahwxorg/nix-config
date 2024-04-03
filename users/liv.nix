@@ -23,7 +23,7 @@
       ripgrep
       gcc
     ];
-    openssh.authorizedKeys.keys = [ "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQC76g1k1112/yFNgTVbza3KV9usRKldaPx1kmvwiXdxbe3w62VrMGr0gkttIVv9q2UkXxjFvYDRLQYhIpOuPMMdx0ignXAaMv5Xk6tliUd0MG1TIYlbHGWMz4aKhDyt2813Qeu4H2nxhMCQ9cKApmKFfjOp9FYal5TQFDezYdl3KSqFuGtHsyEFxTEsFsJRopMpEBGRAeesTW0awknx6R2/X0rvEwcQBW89UHwwvqHHs06Rgobemev+3yZdeaigpwUuFmrjebGGCZxGtMALfNbQDXORH2nkIYg8cvxu5xLc3gkD/+HIdg32uwT6L6Inq8XwdJS5fidXjK/R92+DEgQQ0NSQ40nyNWxX3FEolWtQ69WOWcVuGNhdum4ifn4xVWrI0vK8tmBgNJHCoygIv3OcsgVKOQSUz0wM0QhwXMb77FbaQOWmf0HyN3CU4ZDWDFGCkRDFUnv4f2/pKN1rnV1mNCoyBCsuUwpqdrPAc64Kz1A0XWWiBuT8qkRT+//88HM=" ];
+    openssh.authorizedKeys.keys = [ "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGXi00z/rxVrWLKgYr+tWIsbHsSQO75hUMSTThNm5wUw liv@lila" ];
   };
   
   home-manager.users.liv = {
@@ -68,6 +68,8 @@
         emerge = "doas emerge";
         zshconf = "nvim ~/.zshrc";
         open = "xdg-open";
+	nvim = "nix run /home/liv/nixvim-config --";
+	doas = "sudo";
       };
 
       plugins = with pkgs; [
