@@ -10,6 +10,9 @@
       ./hardware-configuration.nix
       # Import user module
       ../../users/liv.nix
+
+      # Server-specific things
+      ../../modules/services/iceshrimp.nix
     ];
 
   # Bootloader.
