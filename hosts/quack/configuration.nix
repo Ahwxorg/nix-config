@@ -13,27 +13,25 @@
     ];
 
   # Bootloader.
-  boot.loader.grub.enable = true;
-  boot.loader.grub.device = "/dev/vda";
-  boot.loader.grub.useOSProber = true;
-
-  networking.hostName = "quack"; # Define your hostname.
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-
-  # Configure network proxy if necessary
-  # networking.proxy.default = "http://user:password@proxy:port/";
-  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
+  boot.loader.grub = {
+    enable = true;
+    device = "/dev/vda";
+    useOSProber = true;
+  };
 
   # Enable networking
-  networking.networkmanager.enable = false;
-  networking.useDHCP = false;
-  networking.interfaces.ens3.useDHCP = false;
-  networking.interfaces.ens3.ipv4.addresses = [ {
-    address = "185.108.205.15";
-    prefixLength = 24;
-  } ];
-  networking.defaultGateway = "185.108.205.1";
-  networking.nameservers = ["9.9.9.9"];
+  networking = {
+    hostName = "quack"; # Define your hostname.
+    networkmanager.enable = false;
+    useDHCP = false;
+    interfaces.ens3.useDHCP = false;
+    interfaces.ens3.ipv4.addresses = [ {
+      address = "185.108.205.15";
+      prefixLength = 24;
+    } ];
+    defaultGateway = "185.108.205.1";
+    nameservers = ["9.9.9.9"];
+  };
 
   # Set your time zone.
   time.timeZone = "America/Los_Angeles";
@@ -52,17 +50,6 @@
     LC_TELEPHONE = "en_US.UTF-8";
     LC_TIME = "en_US.UTF-8";
   };
-
-  #  # Define a user account. Don't forget to set a password with ‘passwd’.
-  #  users.users.liv = {
-  #    isNormalUser = true;
-  #    description = "liv";
-  #    extraGroups = [ "networkmanager" "wheel" ];
-  #    packages = with pkgs; [];
-  #    openssh.authorizedKeys.keys = [
-  #      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGXi00z/rxVrWLKgYr+tWIsbHsSQO75hUMSTThNm5wUw liv@lila"
-  #    ];
-  #  };
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
@@ -87,7 +74,10 @@
   # List services that you want to enable:
 
   # Enable the OpenSSH daemon.
-  services.openssh.enable = true;
+  services.openssh = {
+    enable = true;
+    ports = [ 9123 ];
+  };
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
