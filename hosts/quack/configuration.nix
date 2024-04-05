@@ -12,7 +12,7 @@
       ../../users/liv.nix
 
       # Server-specific things
-      ../../modules/services/iceshrimp.nix
+      ../../modules/services/nginx.nix
     ];
 
   # Bootloader.
