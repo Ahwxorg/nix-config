@@ -13,6 +13,7 @@
 
       # Server-specific things
       ../../modules/services/nginx.nix
+      ../../modules/services/iceshrimp.nix
     ];
 
   # Bootloader.
