@@ -8,6 +8,6 @@
   };
   security.acme = {
     acceptTerms = true;
-    defaults.email = "ahwx@ahwx.org";
+    defaults.email = "letsencrypt@ahwx.org";
   };
 }

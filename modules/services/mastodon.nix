@@ -1,7 +1,17 @@
 { lib, config, pkgs,  ... }:
 {
-  services.iceshrimp = {
-    enable = true; # Actually enable the module
-    url = "https://quack.social"; # The domain your Iceshrimp UI will be served on.
+  security.acme = {
+    acceptTerms = true;
+    defaults.email = "letsencrypt@ahwx.org";
   };
+  services.mastodon = {
+    enable = true;
+    localDomain = "social.quack.social";
+    configureNginx = true;
+    smtp.fromAddress = "noreply@quack.social";
+    extraConfig.SINGLE_USER_MODE = "false";
+    extraConfig.DISABLE_AUTOMATIC_SWITCHING_TO_APPROVED_REGISTRATIONS = "false";
+    streamingProcesses = 3;
+  };
+  #networking.firewall.allowedTCPPorts = [ 80 443 ];
 }
