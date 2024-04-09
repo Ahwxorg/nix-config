@@ -20,41 +20,7 @@
         "type": "github"
       }
     },
-    "iceshrimp": {
-      "inputs": {
-        "nixpkgs": "nixpkgs"
-      },
-      "locked": {
-        "lastModified": 1711817618,
-        "narHash": "sha256-A+h24bdb9+U6htvcKAzAAGn5JZ/OyBP3nA11vJ8cqPo=",
-        "ref": "refs/heads/dev",
-        "rev": "6cce92816dca153d7ff3b867788a210c2a61b712",
-        "revCount": 44,
-        "type": "git",
-        "url": "https://iceshrimp.dev/iceshrimp/packaging"
-      },
-      "original": {
-        "type": "git",
-        "url": "https://iceshrimp.dev/iceshrimp/packaging"
-      }
-    },
     "nixpkgs": {
-      "locked": {
-        "lastModified": 1711703276,
-        "narHash": "sha256-iMUFArF0WCatKK6RzfUJknjem0H9m4KgorO/p3Dopkk=",
-        "owner": "nixos",
-        "repo": "nixpkgs",
-        "rev": "d8fe5e6c92d0d190646fb9f1056741a229980089",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nixos",
-        "ref": "nixos-unstable",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
-    "nixpkgs_2": {
       "locked": {
         "lastModified": 1708296515,
         "narHash": "sha256-FyF489fYNAUy7b6dkYV6rGPyzp+4tThhr80KNAaF/yY=",
@@ -73,8 +39,7 @@
     "root": {
       "inputs": {
         "home-manager": "home-manager",
-        "iceshrimp": "iceshrimp",
-        "nixpkgs": "nixpkgs_2"
+        "nixpkgs": "nixpkgs"
       }
     }
   },
