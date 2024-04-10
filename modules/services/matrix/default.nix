@@ -47,10 +47,6 @@ in {
           # Further reference can be found in the upstream docs at
           # https://spec.matrix.org/latest/client-server-api/#getwell-knownmatrixclient
           locations."= /.well-known/matrix/client".extraConfig = mkWellKnown clientConfig;
-        };
-        "${fqdn}" = {
-          enableACME = true;
-          forceSSL = true;
           # It's also possible to do a redirect here or something else, this vhost is not
           # needed for Matrix. It's recommended though to *not put* element
           # here, see also the section about Element.
@@ -68,23 +64,23 @@ in {
 
     matrix-synapse = {
       enable = true;
-      settings.server_name = config.networking.domain;
-      # The public base URL value must match the `base_url` value set in `clientConfig` above.
-      # The default value here is based on `server_name`, so if your `server_name` is different
-      # from the value of `fqdn` above, you will likely run into some mismatched domain names
-      # in client applications.
-      settings.public_baseurl = baseUrl;
-      settings.listeners = [
-        { port = 8008;
-          bind_addresses = [ "::1" ];
-          type = "http";
-          tls = false;
-          x_forwarded = true;
-          resources = [ {
-            names = [ "client" "federation" ];
-            compress = true;
-          } ];
-        }
-      ];
+      settings = {
+        server_name = "${fqdn}";
+        public_baseurl = "https://${fqdn}";
+        enable_registration = false;
+        listeners = [
+          { port = 8008;
+            bind_addresses = [ "::1" ];
+            type = "http";
+            tls = false;
+            x_forwarded = true;
+            resources = [ {
+              names = [ "client" "federation" ];
+              compress = true;
+            } ];
+          }
+        ];
+      };
     };
+  };
 }
