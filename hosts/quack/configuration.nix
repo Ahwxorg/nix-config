@@ -12,9 +12,9 @@
       ../../users/liv.nix
 
       # Server-specific things
-      ../../modules/services/nginx.nix
+      #../../modules/services/nginx.nix
       ../../modules/services/mastodon.nix
-      ../../modules/services/matrix.nix
+      ../../modules/services/matrix/default.nix
     ];
 
   # Bootloader.
