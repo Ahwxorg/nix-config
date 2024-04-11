@@ -3,6 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    agenix.url = "github:ryantm/agenix";
 
     home-manager = {
       url = "github:nix-community/home-manager";
@@ -15,7 +16,7 @@
     # };
   };
 
-  outputs = inputs@{ self, nixpkgs, home-manager, ... }: {
+  outputs = inputs@{ self, nixpkgs, home-manager, agenix, ... }: {
     nixosConfigurations = {
       default = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
@@ -37,6 +38,10 @@
         system = "x86_64-linux";
         modules = [ 
           ./hosts/quack/configuration.nix
+          agenix.nixosModules.default
+          {
+            environment.systemPackages = [ agenix.packages."x86_64-linux".default ];
+          }
 
           home-manager.nixosModules.home-manager
           {
