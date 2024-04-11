@@ -10,15 +10,19 @@ let
     return 200 '${builtins.toJSON data}';
   '';
 in {
+  #age.secrets.matrix-synapse = {
+  #    file = "../../../secrets/matrix-synapse.age";
+  #};
+
   services = {
-    postgresql.enable = true;
-    postgresql.initialScript = pkgs.writeText "synapse-init.sql" ''
-      CREATE ROLE "matrix-synapse" WITH LOGIN PASSWORD 'synapse';
-      CREATE DATABASE "matrix-synapse" WITH OWNER "matrix-synapse"
-        TEMPLATE template0
-        LC_COLLATE = "C"
-        LC_CTYPE = "C";
-    '';
+    # postgresql.enable = true;
+    # postgresql.initialScript = pkgs.writeText "synapse-init.sql" ''
+    #   CREATE ROLE "matrix-synapse" WITH LOGIN PASSWORD 'synapse';
+    #   CREATE DATABASE "matrix-synapse" WITH OWNER "matrix-synapse"
+    #     TEMPLATE template0
+    #     LC_COLLATE = "C"
+    #     LC_CTYPE = "C";
+    # '';
 
     nginx = {
       enable = true;
@@ -65,9 +69,16 @@ in {
     matrix-synapse = {
       enable = true;
       settings = {
+        # database.name = "psycopg2";
+        # database.args = {
+        #   user = "matrix-synapse";
+        #   password = "synapse";
+        # };
         server_name = "${fqdn}";
         public_baseurl = "https://${fqdn}";
         enable_registration = false;
+        #registration_shared_secret = config.age.secrets.matrix-synapse;
+        macaroon_secret_key = config.age.secrets.matrix-synapse;
         listeners = [
           { port = 8008;
             bind_addresses = [ "::1" ];
