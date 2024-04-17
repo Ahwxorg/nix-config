@@ -1,4 +1,4 @@
-{ config, vars, ... }:
+{ config, ... }:
 {
   virtualisation.docker.enable = true;
   users.users.liv.extraGroups = [ "docker" ];
@@ -12,9 +12,6 @@
         ""
         ];
         environment = {
-          TZ = vars.timeZone;
-          PUID = "994";
-          GUID = "993";
           CONFIG_GOOGLE_DOMAIN = "com";
           CONFIG_LANGUAGE = "en";
           CONFIG_NUMBER_OF_RESULTS = "10";

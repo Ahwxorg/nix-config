@@ -62,6 +62,7 @@ in {
           locations."/_matrix".proxyPass = "http://[::1]:8008";
           # Forward requests for e.g. SSO and password-resets.
           locations."/_synapse/client".proxyPass = "http://[::1]:8008";
+          locations."wp-login.php".return = "301 https://hil-speed.hetzner.com/10GB.bin";
         };
       };
     };
@@ -78,7 +79,7 @@ in {
         public_baseurl = "https://${fqdn}";
         enable_registration = false;
         #registration_shared_secret = config.age.secrets.matrix-synapse;
-        macaroon_secret_key = config.age.secrets.matrix-synapse;
+        #macaroon_secret_key = config.age.secrets.matrix-synapse;
         listeners = [
           { port = 8008;
             bind_addresses = [ "::1" ];
