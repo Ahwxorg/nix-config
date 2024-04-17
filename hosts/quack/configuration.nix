@@ -14,7 +14,8 @@
       # Server-specific things
       #../../modules/services/nginx.nix
       ../../modules/services/mastodon.nix
-      ../../modules/services/matrix/default.nix
+      #../../modules/services/matrix/default.nix
+      ../../modules/services/librey.nix
     ];
 
   # Bootloader.
