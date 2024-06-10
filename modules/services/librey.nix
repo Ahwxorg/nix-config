@@ -6,11 +6,8 @@
   virtualisation.oci-containers = {
     containers = {
       librey = {
-        image = "ghcr.io/ahwxorg/librey:latest";
+        image = "ghcr.io/ahwxorg/librey";
         autoStart = true;
-        extraOptions = [
-        ""
-        ];
         environment = {
           CONFIG_GOOGLE_DOMAIN = "com";
           CONFIG_LANGUAGE = "en";
